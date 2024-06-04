@@ -1,0 +1,5 @@
+spring:
+  kafka:
+    topic:
+      notification: "sent_orders"
+    bootstrap-servers: localhost:9092

@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    topic:
+      create-order: "new_orders"
+      create-shipping: "payed_orders"
+    bootstrap-servers: localhost:9092
