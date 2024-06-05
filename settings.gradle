@@ -1,0 +1,3 @@
+rootProject.name = 'kafka_project'
+
+include ':orders_service', ':payment_service', ':shipping_service', ':orders_commons', ':notification_service'

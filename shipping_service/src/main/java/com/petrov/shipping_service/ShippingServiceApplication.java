@@ -1,6 +1,7 @@
 package com.petrov.shipping_service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.petrov.commons.KafkaConfigProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,11 @@ public class ShippingServiceApplication {
 	@Bean
 	public ObjectMapper objectMapper() {
 		return new ObjectMapper();
+	}
+
+	@Bean
+	public KafkaConfigProperties kafkaConfigProperties() {
+		return new KafkaConfigProperties();
 	}
 
 }

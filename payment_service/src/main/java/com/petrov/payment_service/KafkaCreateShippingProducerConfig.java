@@ -1,5 +1,7 @@
 package com.petrov.payment_service;
 
+import com.petrov.commons.KafkaConfigProperties;
+import com.petrov.commons.OrderDto;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -20,7 +22,7 @@ public class KafkaCreateShippingProducerConfig {
     private final KafkaConfigProperties kafkaConfigProperties;
 
     @Bean
-    public ProducerFactory<String, Order> orderProducerFactory() {
+    public ProducerFactory<String, OrderDto> orderProducerFactory() {
         Map<String, Object> props = new HashMap<>();
 
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConfigProperties.getBootstrapServers());
@@ -31,7 +33,7 @@ public class KafkaCreateShippingProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Order> orderKafkaTemplate(ProducerFactory<String, Order> producerFactory) {
+    public KafkaTemplate<String, OrderDto> orderKafkaTemplate(ProducerFactory<String, OrderDto> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 }

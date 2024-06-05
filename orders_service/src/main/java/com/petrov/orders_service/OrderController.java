@@ -1,5 +1,6 @@
 package com.petrov.orders_service;
 
+import com.petrov.commons.OrderDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ public class OrderController {
     private final OrderKafkaService orderService;
 
     @PostMapping()
-    public void createOrder(@RequestBody Order order) {
+    public void createOrder(@RequestBody OrderDto order) {
       log.info("Order: id={}, status={}", order.getOrderId(), order.getStatus());
         orderService.createOrder(order);
     }

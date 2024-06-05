@@ -1,5 +1,6 @@
 package com.petrov.payment_service;
 
+import com.petrov.commons.OrderDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumerService {
 
     private final MessageMapper messageMapper;
-    private final KafkaTemplate<String, Order> kafkaTemplate;
+    private final KafkaTemplate<String, OrderDto> kafkaTemplate;
 
     @Value("${spring.kafka.topic.create-shipping}")
     private String kafkaTopicShipping;
@@ -23,7 +24,7 @@ public class KafkaConsumerService {
 
     public void receiveOrder(ConsumerRecord<String, String> orderRecord) {
 
-        Order order = messageMapper.mapRecordMessageToDto(orderRecord.value(), Order.class).orElseThrow();
+        OrderDto order = messageMapper.mapRecordMessageToDto(orderRecord.value(), OrderDto.class).orElseThrow();
 
         log.info("Received new order: key={}, value={}, offset={}",
                 orderRecord.key(),
